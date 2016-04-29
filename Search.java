@@ -1,14 +1,21 @@
 import java.util.Scanner;
-
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.awt.Image; 
+import java.io.IOException;
 public class Search
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
         Scanner scan = new Scanner(System.in);
         System.out.println("Search for Resources: ");
         String a = scan.next();
-        ResourceSearcher searcher = new ResourceSearcher(a);
+        QuickImageFinder searcher = new QuickImageFinder(a);
         
+        Image image = searcher.find();  
+        Graphics g = image.getGraphics();
+        g.dispose();
         
     }
     
