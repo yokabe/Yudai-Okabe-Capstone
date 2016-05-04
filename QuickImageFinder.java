@@ -1,15 +1,22 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.IOException;
 import java.util.Scanner;
 import java.net.URL;
 import java.net.URI;
 import java.awt.Desktop;
 import javax.imageio.ImageIO;
 import java.awt.Image;
-import java.io.FileOutputStream;
+import java.awt.image.BufferedImage;
 
+import javax.swing.text.html.HTML.Tag;
+import java.io.*;
+import javax.swing.text.html.HTMLEditorKit.HTMLTextAction;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTML;
+import javax.swing.text.html.HTMLEditorKit;
+
+/**
+ * A class to find an image and display that image
+ * @author Yudai Okabe
+ */
 public class QuickImageFinder
 {
     
@@ -18,40 +25,60 @@ public class QuickImageFinder
     
     private URL url;
     
+    private Image image;
+    
     public QuickImageFinder(String s)
     {
         this.searchItem = s;
     }
     
-    public Image find() throws IOException
+     /**
+        * Method to get the full path for the passed file name
+        * @param fileName the name of a file
+        * @return the full path for the file
+    */
+    public void find() throws IOException
     {
         try 
         {
             Desktop desktop = java.awt.Desktop.getDesktop();
             url = new URL("https://en.wikipedia.org/wiki/" + searchItem);
-            
+            Scanner in = new Scanner(url.openStream());
+            String s = "";
+            String url2 = "";
+            int a, b; 
+            while (url2 == "")
+            {
+                s = in.nextLine();
+                if (s.contains("<IMG SRC=\\"))
+                {
+                    a = s.indexOf("<IMG SRC=\"");
+                    b = s.indexOf("\"", a);
+                    url2 = s.substring(a+11, b);
+                }
+                
+            }
+            download(url2);
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-        return download(url);
+        
     }
     
-    public Image download(URL url) throws IOException
+    public void download(String url) throws IOException
     {
-        Image i = null;
-        
-        try
+        image = null;
+        try 
         {
-            i = ImageIO.read(url);
-            ImageIO.write(i, "jpg", new File("/tmp/picture.jpg"));
-        }
-        catch (IOException e)
+            URL url2 = new URL(url);
+            image = ImageIO.read(url2);
+        } 
+        catch (IOException e) 
         {
             e.printStackTrace();
         }
-        return i;
     }
     
 }
