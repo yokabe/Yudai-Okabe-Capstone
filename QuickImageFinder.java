@@ -46,18 +46,22 @@ public class QuickImageFinder
             Scanner in = new Scanner(url.openStream());
             String s = "";
             String url2 = "";
-            int a, b; 
-            while (url2 == "")
+            int a, b, c; 
+            while (in.hasNextLine())
             {
                 s = in.nextLine();
-                if (s.contains("<IMG SRC=\\"))
+                s = s.toUpperCase();
+                if (s.contains("<IMG "))
                 {
-                    a = s.indexOf("<IMG SRC=\"");
-                    b = s.indexOf("\"", a);
-                    url2 = s.substring(a+11, b);
+                    a = s.indexOf("<IMG ");
+                    b = s.indexOf("SRC=\"", a + 5);
+                    c = s.indexOf("\"", b + 5);
+                    url2 = s.substring(b + 5, c);
+                    break;
                 }
                 
             }
+            url2 = "http:" + url2;
             download(url2);
         }
         catch (Exception e)

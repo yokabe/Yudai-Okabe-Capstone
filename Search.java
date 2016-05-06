@@ -13,6 +13,7 @@ public class Search
         String a = scan.next();
         QuickImageFinder searcher = new QuickImageFinder(a);
         
+        searcher.find();
         
         
     }
