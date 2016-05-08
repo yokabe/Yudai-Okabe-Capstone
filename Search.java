@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Image; 
 import java.io.IOException;
+
+import javax.swing.JFrame;
 public class Search
 {
     public static void main(String[] args) throws IOException
@@ -13,8 +15,10 @@ public class Search
         String a = scan.next();
         QuickImageFinder searcher = new QuickImageFinder(a);
         
-        searcher.find();
-        
+        Image foundImage = searcher.find();
+        JFrame frame = new ImageFrame(foundImage);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
         
     }
     

@@ -14,7 +14,7 @@ import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit;
 
 /**
- * A class to find an image and display that image
+ * A class to find an image and download that image
  * @author Yudai Okabe
  */
 public class QuickImageFinder
@@ -33,11 +33,10 @@ public class QuickImageFinder
     }
     
      /**
-        * Method to get the full path for the passed file name
-        * @param fileName the name of a file
-        * @return the full path for the file
+        * Method to find a specifid image from the web
+        * @return the found image
     */
-    public void find() throws IOException
+    public Image find() throws IOException
     {
         try 
         {
@@ -68,9 +67,13 @@ public class QuickImageFinder
         {
             e.printStackTrace();
         }
-        
+        return image; 
     }
     
+     /**
+        * Method to download the found image on the webpage
+        * @param String of the url of the image
+    */
     public void download(String url) throws IOException
     {
         image = null;
