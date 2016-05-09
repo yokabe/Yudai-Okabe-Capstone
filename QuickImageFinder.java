@@ -23,13 +23,19 @@ public class QuickImageFinder
     // The item that is being searched an image for
     private String searchItem;
     
-    private URL url;
+   
     
-    private Image image;
+    private BufferedImage image;
+    
+    private String search;
+    
+    private URL imageURL;
     
     public QuickImageFinder(String s)
     {
         this.searchItem = s;
+        this.search = "";
+        
     }
     
      /**
@@ -41,7 +47,8 @@ public class QuickImageFinder
         try 
         {
             Desktop desktop = java.awt.Desktop.getDesktop();
-            url = new URL("https://en.wikipedia.org/wiki/" + searchItem);
+            URL url = new URL("https://en.wikipedia.org/wiki/" + searchItem);
+            int count = 0;
             Scanner in = new Scanner(url.openStream());
             String s = "";
             String url2 = "";
@@ -49,38 +56,42 @@ public class QuickImageFinder
             while (in.hasNextLine())
             {
                 s = in.nextLine();
-                s = s.toUpperCase();
-                if (s.contains("<IMG "))
+                
+                if (s.contains("<img "))
                 {
-                    a = s.indexOf("<IMG ");
-                    b = s.indexOf("SRC=\"", a + 5);
+                    a = s.indexOf("<img ");
+                    b = s.indexOf("src=\"", a + 5);
                     c = s.indexOf("\"", b + 5);
                     url2 = s.substring(b + 5, c);
-                    break;
+                    count++;
+                    if (count == 4)
+                    {
+                        break;
+                    }
                 }
                 
             }
-            url2 = "http:" + url2;
-            download(url2);
+            this.search = "http:" + url2;
+            this.imageURL = new URL(this.search);
+            download();
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-        return image; 
+        return this.image; 
     }
     
      /**
         * Method to download the found image on the webpage
         * @param String of the url of the image
     */
-    public void download(String url) throws IOException
+    public void download() throws IOException
     {
-        image = null;
         try 
         {
-            URL url2 = new URL(url);
-            image = ImageIO.read(url2);
+            System.out.println(this.imageURL.toString());
+            this.image = ImageIO.read(this.imageURL);
         } 
         catch (IOException e) 
         {
