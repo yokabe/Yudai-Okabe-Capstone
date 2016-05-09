@@ -12,6 +12,7 @@ import javax.swing.text.html.HTMLEditorKit.HTMLTextAction;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLEditorKit;
+import java.awt.Toolkit;
 
 /**
  * A class to find an image and download that image
@@ -27,15 +28,15 @@ public class QuickImageFinder
     
     private BufferedImage image;
     
-    private String search;
+   
     
-    private URL imageURL;
+
     
     public QuickImageFinder(String s)
     {
         this.searchItem = s;
-        this.search = "";
-        
+
+        this.image = null;
     }
     
      /**
@@ -71,32 +72,40 @@ public class QuickImageFinder
                 }
                 
             }
-            this.search = "http:" + url2;
-            this.imageURL = new URL(this.search);
-            download();
+            String search = "http:" + url2;
+            
+            download(search);
+            
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
-        return this.image; 
+        return this.image;
     }
     
      /**
         * Method to download the found image on the webpage
         * @param String of the url of the image
     */
-    public void download() throws IOException
+    public void download(String a) throws IOException
     {
         try 
         {
-            System.out.println(this.imageURL.toString());
-            this.image = ImageIO.read(this.imageURL);
+            URL imageURL = new URL(a);
+            System.out.println(imageURL.toString());
+            this.image = ImageIO.read(imageURL);
+            
         } 
         catch (IOException e) 
         {
             e.printStackTrace();
         }
+        
+//         this.imageURL = new URL("http://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Cat_poster_1.jpg/250px-Cat_poster_1.jpg");
+//         image = Toolkit.getDefaultToolkit().getImage(imageURL);
+//         System.out.println(image.toString());
     }
+    
     
 }

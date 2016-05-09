@@ -30,7 +30,8 @@ public class ImageComponent extends JComponent
     public void paintComponent(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;
-        g2.drawImage(image,0,0,this);
+//         Toolkit.getDefaultToolkit().prepareImage(image, 50, 50, this);
+        g2.drawImage(image,10,10,this);
         
     }
 }
