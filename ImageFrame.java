@@ -18,6 +18,7 @@ public class ImageFrame extends JFrame
     {
         scene = new ImageComponent(image);
         add(scene);
+        setTitle("Image Finder");
         setSize(600, 600);
     }
 
