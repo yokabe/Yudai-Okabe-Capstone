@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.*;
+import java.awt.TextComponent;
 /**
  * Draws image
  * 
@@ -33,7 +34,7 @@ public class ImageComponent extends JComponent
         Graphics2D g2 = (Graphics2D) g;
 //         Toolkit.getDefaultToolkit().prepareImage(image, 50, 50, this);
         g2.drawImage(image1,0,0,this);
-        g2.drawImage(image2,0,300,this);
+        g2.drawImage(image2,0,image1.getHeight(this),this);
         
     }
 }
