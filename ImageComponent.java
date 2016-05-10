@@ -16,22 +16,24 @@ import java.awt.image.*;
 public class ImageComponent extends JComponent
 {
     // instance variables - replace the example below with your own
-    private Image image;
+    private Image image1;
+    private Image image2;
     private Dimension prefSize;
     /**
      * Constructor for objects of class ImageComponent
      */
-    public ImageComponent(Image image)
+    public ImageComponent(Image image1, Image image2)
     {
-        this.image = image;
-        
+        this.image1 = image1;
+        this.image2 = image2;
     }
 
     public void paintComponent(Graphics g)
     {
         Graphics2D g2 = (Graphics2D) g;
 //         Toolkit.getDefaultToolkit().prepareImage(image, 50, 50, this);
-        g2.drawImage(image,10,10,this);
+        g2.drawImage(image1,0,0,this);
+        g2.drawImage(image2,0,300,this);
         
     }
 }

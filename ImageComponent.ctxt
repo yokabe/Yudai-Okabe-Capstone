@@ -1,6 +1,6 @@
 #BlueJ class context
-comment0.params=image
-comment0.target=ImageComponent(java.awt.Image)
+comment0.params=image1\ image2
+comment0.target=ImageComponent(java.awt.Image,\ java.awt.Image)
 comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ ImageComponent\r\n
 comment1.params=g
 comment1.target=void\ paintComponent(java.awt.Graphics)

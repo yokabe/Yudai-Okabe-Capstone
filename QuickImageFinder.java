@@ -26,7 +26,7 @@ public class QuickImageFinder
     
    
     
-    private BufferedImage image;
+    private BufferedImage image1;
     
    
     
@@ -36,14 +36,14 @@ public class QuickImageFinder
     {
         this.searchItem = s;
 
-        this.image = null;
+        this.image1 = null;
     }
     
      /**
         * Method to find a specifid image from the web
         * @return the found image
     */
-    public Image find() throws IOException
+    public Image find(int counts) throws IOException
     {
         try 
         {
@@ -65,14 +65,14 @@ public class QuickImageFinder
                     c = s.indexOf("\"", b + 5);
                     url2 = s.substring(b + 5, c);
                     count++;
-                    if (count == 4)
+                    if (count == counts)
                     {
                         break;
                     }
                 }
                 
             }
-            String search = "http:" + url2;
+            String search = "https:" + url2;
             
             download(search);
             
@@ -81,7 +81,7 @@ public class QuickImageFinder
         {
             e.printStackTrace();
         }
-        return this.image;
+        return this.image1;
     }
     
      /**
@@ -93,8 +93,8 @@ public class QuickImageFinder
         try 
         {
             URL imageURL = new URL(a);
-            System.out.println(imageURL.toString());
-            this.image = ImageIO.read(imageURL);
+            
+            this.image1 = ImageIO.read(imageURL);
             
         } 
         catch (IOException e) 

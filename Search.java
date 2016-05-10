@@ -13,10 +13,12 @@ public class Search
         Scanner scan = new Scanner(System.in);
         System.out.println("Search for Resources: ");
         String a = scan.next();
+        a = a.toLowerCase();
         QuickImageFinder searcher = new QuickImageFinder(a);
         
-        Image foundImage = searcher.find();
-        JFrame frame = new ImageFrame(foundImage);
+        Image foundImage = searcher.find(4);
+        Image foundImage2 = searcher.find(1);
+        JFrame frame = new ImageFrame(foundImage, foundImage2);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         

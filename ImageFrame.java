@@ -14,12 +14,12 @@ public class ImageFrame extends JFrame
     /**
      * Constructor for objects of class ImageFrame
      */
-    public ImageFrame(Image image)
+    public ImageFrame(Image image1, Image image2)
     {
-        scene = new ImageComponent(image);
+        scene = new ImageComponent(image1, image2);
         add(scene);
         setTitle("Image Finder");
-        setSize(600, 600);
+        setSize(400, 500);
     }
 
     
