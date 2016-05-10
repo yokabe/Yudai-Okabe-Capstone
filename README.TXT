@@ -27,4 +27,5 @@ when given an URL of an image. I also had to do further research on how the URL 
 so that I can take information from URL’s html, find the image, and download the image with that found URL.
 
 
-INSTRUCTIONS: Type in a search item of one or two words when asked to by the code in lower case. 
+INSTRUCTIONS: Type in a search item of one or two words when asked to by the code in lower case. Works correctly
+with most single word searches.
